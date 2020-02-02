@@ -21,14 +21,9 @@ public class AvatarController : MonoBehaviour
     private int jumpTicks = 0;
     public int MAX_JUMP_TICKS = 10;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        
-    }
-
-    private void OnDisable() {
     }
 
     // Update is called once per frame
@@ -56,31 +51,20 @@ public class AvatarController : MonoBehaviour
     }
 
     public void Move(InputAction.CallbackContext context) {
-        xInput = (grounded? 1.0f : AIR_CONTROL_FACTOR) * context.ReadValue<Vector2>().x;
-        //xInput = (grounded? 1.0f : AIR_CONTROL_FACTOR) * inputVal.Get<Vector2>().x;
+        MoveHorizontally(context.ReadValue<Vector2>().x);
+    }
+
+    private void MoveHorizontally(float c) {
+        xInput = (grounded? 1.0f : AIR_CONTROL_FACTOR) * c;
         if (xInput < 0) sprite.flipX = true;
         else if (xInput > 0) sprite.flipX = false;
     }
-/*
-    public void OnJump() {
-        if (numJumps > 0) {
-            if (buddyJumpEnabled) buddyJumpEnabled = false;
-            else numJumps--;
-
-            rb.velocity = new Vector2(rb.velocity.x, BASE_JUMP_SPEED);
-        }
-
-        if (grounded) {
-            grounded = false;
-        }
-    }
-*/
 
     public void Jump(InputAction.CallbackContext context) {
         if (context.started) JumpStart();
         if (context.canceled) JumpCancel();
     }
-    
+
     public void JumpStart() {
         if (numJumps > 0) {
             if (buddyJumpEnabled) buddyJumpEnabled = false;
