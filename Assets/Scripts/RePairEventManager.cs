@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class EventSystem : MonoBehaviour
+public class RePairEventManager : MonoBehaviour
 {
     // Overrides for event types
     [System.Serializable]
@@ -41,11 +41,11 @@ public class EventSystem : MonoBehaviour
     }
 
     // Enforcement stuff
-    private static EventSystem eventSystem;
-    public static EventSystem Instance {
+    private static RePairEventManager eventSystem;
+    public static RePairEventManager Instance {
         get {
             if (!eventSystem) {
-                eventSystem = FindObjectOfType(typeof(EventSystem)) as EventSystem;
+                eventSystem = FindObjectOfType(typeof(RePairEventManager)) as RePairEventManager;
                 if (!eventSystem) {
                     Debug.LogError("EventSystem requires at least one active EventSystem component in the scene.");
                 } else {
