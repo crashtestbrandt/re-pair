@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AvatarSandbox.unity
     guid: 99b223c255c0b524a88f70271f77db7b
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 7ab7814b498777f44941b42d5b365dff,
+      type: 2}
