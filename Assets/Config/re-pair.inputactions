@@ -1,5 +1,5 @@
 {
-    "name": "CTJ-00",
+    "name": "re-pair",
     "maps": [
         {
             "name": "Player",
@@ -30,20 +30,12 @@
                     "interactions": ""
                 },
                 {
-                    "name": "GamepadButtonDown",
-                    "type": "Button",
-                    "id": "6fe6d94a-106f-4650-aa1c-093ad5b45315",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "201d8410-b67d-4bfe-ac23-9e661fd22649",
+                    "id": "df3f2f1c-9d7f-46df-8c6a-850e31b60c55",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold"
                 }
             ],
             "bindings": [
@@ -280,55 +272,11 @@
                 },
                 {
                     "name": "",
-                    "id": "c550dd31-5f47-437c-986d-fd74a8d1975d",
+                    "id": "171c00c4-bbea-4558-a778-1ff12b8d20a5",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "GamepadButtonDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4d63ab6b-250d-4807-b80c-469ecdb29af2",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "GamepadButtonDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1882b60e-128f-40a9-99d8-197d8326d467",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "GamepadButtonDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0e9fc247-dc0b-4c12-8ada-02b71f77461b",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "GamepadButtonDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4d6a026b-ea3c-4ce5-b901-9a4dfd94a55e",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false

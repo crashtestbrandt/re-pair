@@ -17,12 +17,18 @@ public class AvatarController : MonoBehaviour
     public bool grounded = false;
 
     private float xInput = 0.0f;
-    private Vector2 jumpStartVelocity;
+
+    private int jumpTicks = 0;
+    public int MAX_JUMP_TICKS = 10;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        
+    }
+
+    private void OnDisable() {
     }
 
     // Update is called once per frame
@@ -32,6 +38,11 @@ public class AvatarController : MonoBehaviour
             BASE_MOVEMENT_SPEED * xInput,
             rb.velocity.y
         );
+
+        if (jumpTicks > 0) {
+            rb.velocity = new Vector2(rb.velocity.x, BASE_JUMP_SPEED);
+            jumpTicks--;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {        
@@ -44,13 +55,13 @@ public class AvatarController : MonoBehaviour
         }
     }
 
-    public void OnMove(InputValue inputVal) {
-        xInput = grounded? inputVal.Get<Vector2>().x : AIR_CONTROL_FACTOR * inputVal.Get<Vector2>().x;
+    public void Move(InputAction.CallbackContext context) {
+        xInput = (grounded? 1.0f : AIR_CONTROL_FACTOR) * context.ReadValue<Vector2>().x;
+        //xInput = (grounded? 1.0f : AIR_CONTROL_FACTOR) * inputVal.Get<Vector2>().x;
         if (xInput < 0) sprite.flipX = true;
         else if (xInput > 0) sprite.flipX = false;
-        // else x := 0
     }
-
+/*
     public void OnJump() {
         if (numJumps > 0) {
             if (buddyJumpEnabled) buddyJumpEnabled = false;
@@ -62,6 +73,28 @@ public class AvatarController : MonoBehaviour
         if (grounded) {
             grounded = false;
         }
+    }
+*/
+
+    public void Jump(InputAction.CallbackContext context) {
+        if (context.started) JumpStart();
+        if (context.canceled) JumpCancel();
+    }
+    
+    public void JumpStart() {
+        if (numJumps > 0) {
+            if (buddyJumpEnabled) buddyJumpEnabled = false;
+            else numJumps--;
+            jumpTicks = MAX_JUMP_TICKS;
+        }
+
+        if (grounded) {
+            grounded = false;
+        }
+    }
+
+    public void JumpCancel() {
+        jumpTicks = 0;
     }
 
     public void RestoreJumps() {
