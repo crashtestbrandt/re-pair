@@ -44,7 +44,7 @@ public class AvatarController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) { 
-        if (other.gameObject.CompareTag("Jumpable")) {
+        if (other.gameObject.CompareTag("Floor")) {
             int count = other.GetContacts(contacts);
             foreach (var contact in contacts) {
                 if (Vector2.Dot(contact.normal, Vector2.up) > 0) {

@@ -18,7 +18,8 @@ public class PlatformMover : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float yVelocity = ySpeedMax * ((transform.position.y-yHeightMin)/absRange) * 2 * Mathf.PI;
-        transform.position += new Vector3(0.0f, Time.fixedDeltaTime * yVelocity, 0.0f);
+        //float yVelocity = ySpeedMax * Mathf.Cos(((transform.position.y-yHeightMin)/absRange) * 2 * Mathf.PI);
+        //transform.position += new Vector3(0.0f, Time.fixedDeltaTime * yVelocity, 0.0f);
+        transform.position = new Vector3(transform.position.x, yHeightMin - Mathf.Cos(Time.time), 1.0f);
     }
 }
