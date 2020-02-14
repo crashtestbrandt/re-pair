@@ -20,9 +20,12 @@ public class AvatarController : MonoBehaviour
 
     private int jumpTicks = 0;
     public int MAX_JUMP_TICKS = 10;
+    private ContactPoint2D[] contacts;
 
     void Start()
     {
+        contacts = new ContactPoint2D[16];
+
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -40,8 +43,16 @@ public class AvatarController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {        
-        if (other.gameObject.CompareTag("Floor")) {
+    private void OnCollisionEnter2D(Collision2D other) { 
+        if (other.gameObject.CompareTag("Jumpable")) {
+            int count = other.GetContacts(contacts);
+            foreach (var contact in contacts) {
+                if (Vector2.Dot(contact.normal, Vector2.up) > 0) {
+
+                    Debug.Log("You collided with a jumpable surface!");
+                    // TODO: Trigger GetJumps() event; pass transform.position and normal
+                }
+            }
             if (!grounded) {
                 grounded = true;
                 rb.velocity = Vector2.zero;

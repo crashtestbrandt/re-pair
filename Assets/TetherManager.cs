@@ -19,6 +19,8 @@ public class TetherManager : MonoBehaviour
     private Vector3 direction;
     private Vector3 centroid;
 
+    private bool BuddyJump = false;
+
     void Start()
     {
         pos1 = Vector3.zero;
@@ -41,18 +43,13 @@ public class TetherManager : MonoBehaviour
 
         if (sqrDistance < RANGE_1_MAX) {
             Debug.DrawLine(pos1, pos2, Color.green);
-            var startColor = ps.main.startColor;
-            startColor = Color.green;
+            BuddyJump = true;
         }
         else if (sqrDistance < RANGE_2_MAX) {
             Debug.DrawLine(pos1, pos2, Color.yellow);
-            var startColor = ps.main.startColor;
-            startColor = Color.yellow;
         }
         else if (sqrDistance < RANGE_3_MAX) {
             Debug.DrawLine(pos1, pos2, Color.red);
-            var startColor = ps.main.startColor;
-            startColor = Color.red;
         }
 
         var shape = ps.shape;
@@ -60,5 +57,11 @@ public class TetherManager : MonoBehaviour
         transform.position = centroid;
         transform.right = direction;
         
+    }
+
+    public bool attemptUseBuddyJump() {
+        bool temp = BuddyJump;
+        BuddyJump = false;
+        return temp;
     }
 }
